@@ -5,8 +5,7 @@ This is a visualisation of the convex hull calculation with multiple algorithms 
 
 The computation takes place on the client side. The Graham scan has an **nlogn complexity** and Jarvis algorithm has **n * h complexity** (where n is the number of points and h is the number of points on the convex hull).
 
-<p align="center">
+<br>
 
 ![Demo](https://github.com/andrei828/Computational-Geometry-Convex-Hull/blob/master/GrahamScan.gif)
 
-</p>
