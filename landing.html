@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Geometry visiualization</title>
+        <!-- <base href = "file:///Users/andreiliviu/Documents/Facultate/PlaygroundCodeLabs/FrontEndCanvas/landing.html" /> -->
+        <meta name="description" content="Geometry">
+        <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+        <meta name="author" content="Andrei Liviu">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="landing.css" />
+        <script src="script.js"></script>
+        <script src="landing.js"></script>
+    </head>
+
+    <body>
+       
+        <header>
+            <h1 style="font-weight: bold">Geometry Visiualization</h1>
+            <h5 style="font-size: 1.5em; color: grey; font-weight: lighter; margin-top: -1%;">See algorithms in action</h5>
+        </header>
+        <!-- <br><button onclick="get_coords()" style="display: inline-block;">Get coordonates</button>
+        <button onclick="set_draw()">Draw</button><br><br><br>
+        <span id="p"></span> -->
+       
+        <!-- <br><br><br> -->
+        <!-- <form>
+            <input type="radio" 
+                   value="draw" 
+                   name="draw"
+                   checked="true"
+                   style="margin-left: 25px"> Draw </input>
+            <input type="radio"
+                   value="erase" 
+                   name="erase" 
+                   style="margin-left: 25px"> Erase </input>
+        </form> -->
+        <div class="container">
+            <div class="select" onclick="toggle_algorithms_tab()">
+                <!-- <select name="slct" id="slct">
+                <option selected disabled>Choose an algorithm</option>
+                <option value="1">Pure CSS</option>
+                <option value="2">No JS</option>
+                <option value="3">Nice!</option>
+                </select> -->
+                <!-- <select>
+                    <span selected disabled>Select algorithm</span>
+                </select> -->
+                <span id="choose_alg">&nbsp;&nbsp;&nbsp; Choose an algorithm</span>
+            </div>
+           
+            <div id="select_tab">
+                <nav>
+                <div class="algorithm_block" onclick="choose_algorithm(this)">
+                    <div class="algorithm_title">No Algorithm</div>
+                    <div class="algorithm_desc">Just draw forms and select the algorithm later. This basically becomes some kind of paint.</div>
+                </div>
+                <div class="algorithm_block" onclick="choose_algorithm(this)">
+                    <div class="algorithm_title">Graham Algorithm</div>
+                    <div class="algorithm_desc">This is the algorithm which calculates the convex hull of a list of given points.</div>
+                </div>
+                <div class="algorithm_block" onclick="choose_algorithm(this)">
+                    <div class="algorithm_title">Jarvis Algorithm</div>
+                    <div class="algorithm_desc">This is the algorithm which calculates the convex hull of a list of given points.</div>
+                </div>
+                </nav>
+            </div>
+        
+            <div class="pallete">
+                <img id="pencil_icon" src="images/pencil_icon2.png" onclick="pencil_clicked()" width="50" alt="pencil" />
+                <img id="eraser_icon" src="images/eraser_icon1.png" onclick="eraser_clicked()" width="50" alt="eraser" />
+                <img id="color_icon" src="images/color_icon.png" onclick="toggle_colors_tab()" width="50" alt="color" />
+                <div class="color_tab" style="display: none;">
+                    <div class="wrapper">
+                        <div onclick="change_color(this)" class="color_pallete blue"></div>
+                        <div onclick="change_color(this)" class="color_pallete red"></div>
+                        <div onclick="change_color(this)" class="color_pallete green"></div>
+                        <div onclick="change_color(this)" class="color_pallete yellow"></div>
+                        <div onclick="change_color(this)" class="color_pallete magenta"></div>
+                        <div onclick="change_color(this)" class="color_pallete pink"></div>
+                        <div onclick="change_color(this)" class="color_pallete orange"></div>
+                        <div onclick="change_color(this)" class="color_pallete purple"></div>
+                        <div onclick="change_color(this)" class="color_pallete grey"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <iframe id="canvas" src="index.html" width="1425" height="850"></iframe>
+      
+        <br><br><br>
+        <div class="features">
+            <div class="feature_1">
+                <div class="feat_image">
+                    <img width="200" src="images/geometry.png" alt="geometry" />
+                </div><br>
+                <figure class="feat_text">
+                    <figcaption><h6 style="font-weight: lighter; font-size: 1em; margin-top: -1%;">This is the feature description and plm fjertng rtkgniortengjrteugoinrt gitoyrhnglktr glitrn lkftrnig</h6></figcaption>
+                </figure>
+            </div>
+            <div class="feature_1">
+                <div class="feat_image">
+                    <img width="200" src="images/algorithms.png" alt="algorithms" />
+                </div><br>
+                <figure class="feat_text">
+                    <figcaption><h6 style="font-weight: lighter; font-size: 1em; margin-top: -1%;">This is the feature description and fjertng rtkgniortengjrteugoinrt gitoyrhnglktr glitrn lkftrnig</h6></figcaption>
+                </figure>
+            </div>
+            <div class="feature_1">
+                <div class="feat_image">
+                    <img width="200" src="images/visual.jpg" alt="visual" />
+                </div><br>
+                <figure class="feat_text">
+                    <figcaption><h6 style="font-weight: lighter; font-size: 1em; margin-top: -1%;">This is the feature description and gertng rtkgniortengjrteugoinrt gitoyrhnglktr glitrn lkftrnig</h6></figcaption>
+                </figure>
+            </div>
+        </div>
+        <br><br><br><br><br><br>
+        <nav>
+        <div class="card">
+            <article class="card_container">
+                <a href="https://en.wikipedia.org/wiki/Graham_scan" style="text-decoration: none; color: black;"><h2 style="font-weight: bold; font-size: 3.5em;">Graham Algorithm</h2></a>
+                <div class="alg_full_desc">
+                    <p id="graham_desc"> Graham's scan is a method of finding the convex hull of a finite set of points in the plane with time complexity O(n log n). 
+                        It is named after Ronald Graham, who published the original algorithm in 1972.
+                        The algorithm finds all vertices of the convex hull ordered along its boundary.
+                        It uses a stack to detect and remove concavities in the boundary efficiently. 
+                    </p>
+                    <img id="graham_photo" src="images/graham_img.gif" alt="graham" />
+                </div>
+            </article>
+        </div>
+        <br><br>
+        <div class="card">
+            <article class="card_container">
+                <a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm" style="text-decoration: none; color: black;"><h2 style="font-weight: bold; font-size: 3.5em;">Jarvis Algorithm</h2></a>
+                <div class="alg_full_desc">
+                    <p id="jarvis_desc"> In the two-dimensional case the algorithm is also known as Jarvis march, after R. A. Jarvis, who published it in 1973; it has O(nh) time complexity, 
+                        where n is the number of points and h is the number of points on the convex hull. 
+                        Its real-life performance compared with other convex hull algorithms is favorable when n is small 
+                        or h is expected to be very small with respect to n. 
+                        In general cases, the algorithm is outperformed by many others. 
+                    </p>
+                    <img id="jarvis_photo" src="images/jarvis_img.png" alt="jarvis" />
+                </div>
+            </article>
+        </div>
+        </nav>
+        <br><br><br><br>
+
+        <section class="about">
+            
+            <header class="about_title"><h2 style="font-weight: bold; font-size: 3.5em;">About this website</h2></header>
+            <div class="about_desc">
+                <div class="about_info">
+                    <ul id="about_ul">
+                        <li class="about_li">Date: 12-32-2019</li>
+                        <li class="about_li">Author: First Name</li>
+                    </ul>
+                </div>
+                <p class="about_paragraph">
+                    This site was deisgned to provide a visualization of famous algorithms like
+                    This site was deisgned to provide a visualization of famous algorithms like
+                    This site was deisgned to provide a visualization of famous algorithms like
+                    This site was deisgned to provide a visualization of famous algorithms like
+                </p>
+            </div>
+        </section>
+        <aside class="note">
+            <div class="card_container" style="line-height: 150%;">
+            <h4 style="font-size: 1.5em;">! Note</h4>
+                <p>The site is still under development. It will be done in the following weeks. Be pacient :)
+                    The site is still under development. It will be done in the following weeks. Be pacient :)
+                    The site is still under development. It will be done in the following weeks. Be pacient :)
+                </p>
+            </div>
+        </aside>
+
+        <div class="pseudocode">
+            <div class="pseudocode1">
+                <div class="pseudocode_container">
+                    <h1 style="font-weight: bold;">Graham Pseudocode</h1>
+                    <ol class="code" style="font-family: 'Courier New', Courier, monospace; font-size: 1.2em;">
+                    <li><b>let</b> points be the list of points</li>
+                    <li><b>let</b> stack = empty_stack()</li>
+                    <li></li>
+                    <li>find the lowest y-coordinate and leftmost point, called P0</li>
+                    <li><b>sort</b> points by polar angle with P0, if several points have the same polar angle then only keep the farthest</li>
+                    <li></li>
+                    <li><b>for</b> point <b>in</b> points:</li>
+                    <li style="color: grey">&nbsp;&nbsp;&nbsp;&nbsp;# pop the last point from the stack if we turn clockwise to reach this point</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;<b>while</b> count stack > 1 <b>and</b> ccw(next_to_top(stack), top(stack), point) &lt; 0:</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>pop</b> stack</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>push</b> point <b>to</b> stack</li>
+                    <li><b>end</b></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="pseudocode1">
+                <div class="pseudocode_container">
+                    <h1 style="font-weight: bold;">Jarvis Pseudocode</h1>
+                    <ol class="code" style="font-family: 'Courier New', Courier, monospace; font-size: 1.2em;">
+                        <li><b>let</b> points be the list of points</li>
+                        <li><b>let</b> stack = empty_stack()</li>
+                        <li></li>
+                        <li>find the lowest y-coordinate and leftmost point, called P0</li>
+                        <li><b>sort</b> points by polar angle with P0, if several points have the same polar angle then only keep the farthest</li>
+                        <li></li>
+                        <li><b>for</b> point <b>in</b> points:</li>
+                        <li style="color: grey">&nbsp;&nbsp;&nbsp;&nbsp;# pop the last point from the stack if we turn clockwise to reach this point</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;<b>while</b> count stack > 1 <b>and</b> ccw(next_to_top(stack), top(stack), point) &lt; 0:</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>pop</b> stack</li>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>push</b> point <b>to</b> stack</li>
+                        <li><b>end</b></li>
+                        </ol>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+        <footer class="second_layer">
+            <div class="footer_container">
+                <div class="footer_title">
+                    <table>
+                        <tr>
+                            <h2 style="font-size: 2.5em;">Geometry visualization</h2>
+                        </tr>
+                        <tr>
+                            <span style="font-weight: lighter; font-size: 1.3em;" >See algorithms in action</span>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="footer_algorithms_list">
+                    <ul style="line-height: 180%;">
+                        <li><h3>Algorithms used</h3></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Graham scan</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Jarvis Algorithm</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Other</h4></li>
+                    </ul>
+                </div>
+                <div class="footer_documentation_list">
+                    <ul style="line-height: 180%;">
+                        <li><h3>Documentation</h3></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Wikipedia</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">W3schools</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Stack Overflow</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Other</h4></li>
+                    </ul>
+                </div>
+                <div class="footer_developer_list">
+                    <ul style="line-height: 180%;">
+                        <li><h3>About development</h3></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">HTML</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">CSS</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">JavaScript</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Node</h4></li>
+                    </ul>
+                </div>
+                <div class="footer_share_list">
+                    <ul style="line-height: 180%;">
+                        <li><h3>Social media</h3></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Github</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Facebook</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Instagram</h4></li>
+                        <li><h4 style="font-weight: lighter; line-height: 50%;">Youtube</h4></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
