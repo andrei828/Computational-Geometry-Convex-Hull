@@ -1,5 +1,6 @@
 # Computational-Geometry-Convex-Hull
 This is a visualisation of the convex hull calculation with multiple algorithms developed in javascript with p5.
+Check out a demo ![here](https://geometry-canvas.herokuapp.com/)
 
 > **Note:**  Currently only the Graham scan algorithm is implemented but Jarvis's implementation will be added soon.
 
